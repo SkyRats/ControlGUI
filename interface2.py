@@ -116,22 +116,17 @@ def main():
                 return False
             pass
 
-        def publishMsg(self):
+        def publishMsg(self, msg=""):
             pub = rospy.Publisher('controle', String, queue_size=10)
             rospy.init_node('interface', anonymous=True)
             rate = rospy.Rate(20) # 10hz
-            str = self.buttonMsg
+            if msg.len() > 1:
+                str = msg
+            else:
+                str = self.buttonMsg
             pub.publish(str)
             rate.sleep()
-            pass
 
-    ##### Publisher subscriber "interface", que publica no topico "controle"
-	    def publish(str):
-	        pub = rospy.Publisher('controle', String, queue_size=10)
-	        rospy.init_node('interface', anonymous=True)
-	        rate = rospy.Rate(60) # 10hz
-	        pub.publish(str)
-	        rate.sleep()
 
 
 	    mainDisplay.fill(grey)
@@ -152,9 +147,9 @@ def main():
 
     element_list = {frame}
 
-    #============== Inicializacao do subscriber de posicao ===#
-    #rospy.init_node("interface_sub", anonymous=True)
-    #rate = rospy.Rate(20)
+    #============== Inicializacao do subscriber de posicao =========#
+    rospy.init_node("ControlGUI", anonymous=True)
+    rate = rospy.Rate(60)
     
     #pose_param=""
     #battery_param=""
@@ -175,7 +170,7 @@ def main():
 	    
 		def pose_sub(self, topic_name):
 			self.pose_topic = topic_name.data
-			position_sub = rospy.Subscriber('self.pose_topic', PoseStamped, pose_callback)
+			position_sub = rospy.Subscriber(self.pose_topic, PoseStamped, pose_callback)
 	    #==================== BATERIA ======================#
 		def battery_callback(bat_dat):
 			global battery
@@ -186,7 +181,7 @@ def main():
 	    
 		def bat_sub(self, topic_name):
 			self.battery_topic = topic_name.data
-			battery_subscriber = rospy.Subscriber('self.battery_topic', BatteryState, battery_callback)
+			battery_subscriber = rospy.Subscriber(self.battery_topic, BatteryState, battery_callback)
 
 
 		def state_callback(state_data):
@@ -195,7 +190,7 @@ def main():
 	    
 		def state_sub(self, topic_name):
 			self.state_topic = topic_name.data
-			state_status_subscribe = rospy.Subscriber('self.state_topic', State, state_callback)
+			state_status_subscribe = rospy.Subscriber(self.state_topic, State, state_callback)
 
     #======== IMAGENS ==========#
     cam_image = pygame.Surface((cam_width,cam_height))
