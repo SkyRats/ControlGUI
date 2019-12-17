@@ -9,7 +9,7 @@ import cv2
 from cv_bridge import CvBridge
 from geometry_msgs.msg import PoseStamped, Twist
 from sensor_msgs.msg import BatteryState, Image
-from std_msgs.msg import String
+from std_msgs.msg import String, Empty
 from mavros_msgs.msg import State
 
 import time
@@ -72,6 +72,8 @@ def main():
 
     vel_topic = rospy.get_param("/vel_topic")
     cam_topic = rospy.get_param("/cam_topic")
+    takeoff_topic = rospy.get_param("/takeoff_topic")
+    land_topic = rospy.get_param("/land_topic")
     rospy.loginfo("Using velocity topic as " + vel_topic)
     rospy.loginfo("Using camera topic as " + cam_topic)
 
@@ -246,6 +248,18 @@ def main():
                     yawRightButton.publishVel()
                 else:
                     yawRightButton.show()
+
+                if event.key == pygame.K_t:
+                    ## TAKEOFF
+                    takeoff_pub = rospy.Publisher(takeoff_topic, Empty, queue_size=1)
+                    takeoff_pub.publish(Empty())
+
+                if event.key == pygame.K_l:
+                    ## LAND
+                    land_pub = rospy.Publisher(land_topic, Empty, queue_size=1)
+                    land_pub.publish(Empty())
+
+                    
             elif event.type == pygame.KEYUP:
                 newvel = Twist()
                 newvel.linear.x = newvel.linear.y = newvel.linear.z = 0
