@@ -1,0 +1,2 @@
+vel_topic: '/bebop/cmd_vel'
+cam_topic: '/bebop/image_raw'

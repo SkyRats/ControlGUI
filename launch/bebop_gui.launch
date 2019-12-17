@@ -1,0 +1,5 @@
+<launch>
+  <rosparam command="load" file="$(find control_gui)/config/bebop_topics.yaml" />
+
+  <node pkg="control_gui" name="interface_da_massa" type="interface.py" output="screen"/>
+</launch>

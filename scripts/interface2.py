@@ -156,7 +156,6 @@ def main():
     #state_param=""
     class Param:
     	def __init__(self, pose_topic, battery_topic, state_topic):
-
     		self.pose_topic = rospy.get_param("~pose_topic", pose_topic)
     		self.battery_topic = rospy.get_param("~battery_topic", battery_topic)
     		self.state_topic = rospy.get_param("state_topic", state_topic)

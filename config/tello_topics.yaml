@@ -1,0 +1,2 @@
+vel_topic: '/tello/cmd_vel'
+cam_topic: '/tello/image_raw'
