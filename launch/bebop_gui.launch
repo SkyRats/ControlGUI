@@ -1,5 +1,5 @@
 <launch>
-  <rosparam command="load" file="$(find control_gui)/config/bebop_topics.yaml" />
+  <rosparam command="load" file="$(find ControlGUI)/config/bebop_topics.yaml" />
   <arg name="namespace" default="bebop" />
     <arg name="ip" default="192.168.42.1" />
     <arg name="drone_type" default="bebop1" /> <!-- available drone types: bebop1, bebop2 -->
@@ -13,5 +13,5 @@
         </node>
         <include file="$(find bebop_description)/launch/description.launch" />
     </group>
-  <node pkg="control_gui" name="interface_da_massa" type="interface.py" output="screen"/>
+  <node pkg="ControlGUI" name="interface_da_massa" type="interface.py" output="screen"/>
 </launch>
