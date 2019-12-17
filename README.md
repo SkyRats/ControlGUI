@@ -3,6 +3,7 @@
 ### Intelligent Drones Team of Polytechnic School of the University of Sao Paulo
 
 #### Here's how to use our interface:
+#### THIS TUTORIAL IS TOTALLY WRONG
 - it must be in the same directory as the font (STIX-Bold.otf) file
 - there must be a folder with the .png's named "media"
 - run it with rosrun dronecontrol interface.py OR python interface.py at the interface directory
